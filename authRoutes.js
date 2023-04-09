@@ -15,10 +15,10 @@ const demo = mongoose.model('Demo');
 
 router.post('/signup',async (req,res)=>{
    
-    const {email,password,Name,Branch,Year,PhoneNumber,Percentage,Backlogs,RegId,collegeId} = req.body;
+    const {email,password,Name,Branch,Year,PhoneNumber,Percentage,Backlogs,RegId,collegeId,Files} = req.body;
 
     try{
-      const user = new User({email,password,Name,Branch,Year,PhoneNumber,Percentage,Backlogs,RegId,collegeId});
+      const user = new User({email,password,Name,Branch,Year,PhoneNumber,Percentage,Backlogs,RegId,collegeId,Files});
       await  user.save();
       const token = jwt.sign({userId:user._id},jwtkey)
       res.send({token})
@@ -188,10 +188,10 @@ router.get('/deleteApplication', function(req, res, next) {
 
 router.post('/ApplyForJob',async (req,res)=>{
    
-  const {Name,Id,Branch,PhoneNumber,CollegeId,email,CompanyName,LastDate,AppliedDate,PostedDate,PostId} = req.body;
+  const {Name,Id,Branch,PhoneNumber,CollegeId,email,CompanyName,LastDate,AppliedDate,PostedDate,PostId,StudentResume} = req.body;
 
   try{
-    const  apply  = new Apply({Name,Id,Branch,PhoneNumber,email,CollegeId,CompanyName,LastDate,AppliedDate,PostedDate,PostId});
+    const  apply  = new Apply({Name,Id,Branch,PhoneNumber,email,CollegeId,CompanyName,LastDate,AppliedDate,PostedDate,PostId,StudentResume});
     await  apply.save().then(()=>   console.log("Uploaded"));
   }catch(err){
     return res.status(422).send(err.message)

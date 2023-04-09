@@ -53,6 +53,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    Files:{
+        type:[Object]
+    }
 
 })
 
@@ -183,9 +186,10 @@ const  ApplySchema = new mongoose.Schema({
         required:true
 
     },
-  
-  
-
+    StudentResume:{
+        type:String,
+        
+    }
 })
 
 userSchema.pre('save',function(next){
